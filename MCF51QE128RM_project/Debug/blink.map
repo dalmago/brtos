@@ -1,0 +1,593 @@
+Archive member included because of file (symbol)
+
+c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-exit.o)
+                              ./Startup_Code/startup_gcc_m68k_elf.o (exit)
+c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-fini.o)
+                              ./Startup_Code/startup_gcc_m68k_elf.o (__libc_fini_array)
+c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-impure.o)
+                              c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-exit.o) (_global_impure_ptr)
+c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+                              ./Startup_Code/newlib_stubs.o (errno)
+c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-freer.o)
+                              c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o) (_free_r)
+c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-mallocr.o)
+                              c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-freer.o) (__malloc_free_list)
+c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-sbrkr.o)
+                              c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-mallocr.o) (_sbrk_r)
+
+Allocating common symbols
+Common symbol       size              file
+
+errno               0x4               c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+
+Discarded input sections
+
+ .data          0x00000000        0x4 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtbegin.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .group         0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .text          0x00000000        0x0 ./Startup_Code/newlib_stubs.o
+ .data          0x00000000        0x0 ./Startup_Code/newlib_stubs.o
+ .bss           0x00000000        0x0 ./Startup_Code/newlib_stubs.o
+ .text.uart_txChar
+                0x00000000        0x8 ./Startup_Code/newlib_stubs.o
+ .text.uart_rxChar
+                0x00000000        0xa ./Startup_Code/newlib_stubs.o
+ .bss.__env     0x00000000        0x4 ./Startup_Code/newlib_stubs.o
+ .data.environ  0x00000000        0x4 ./Startup_Code/newlib_stubs.o
+ .text._close   0x00000000        0xa ./Startup_Code/newlib_stubs.o
+ .text._execve  0x00000000       0x12 ./Startup_Code/newlib_stubs.o
+ .text._fork    0x00000000       0x12 ./Startup_Code/newlib_stubs.o
+ .text._fstat   0x00000000       0x1a ./Startup_Code/newlib_stubs.o
+ .text._getpid  0x00000000        0xa ./Startup_Code/newlib_stubs.o
+ .text._isatty  0x00000000       0x26 ./Startup_Code/newlib_stubs.o
+ .text._kill    0x00000000       0x12 ./Startup_Code/newlib_stubs.o
+ .text._link    0x00000000       0x12 ./Startup_Code/newlib_stubs.o
+ .text.lseek    0x00000000        0xa ./Startup_Code/newlib_stubs.o
+ .bss.heap_end  0x00000000        0x4 ./Startup_Code/newlib_stubs.o
+ .text.sbrk     0x00000000       0x5a ./Startup_Code/newlib_stubs.o
+ .text.read     0x00000000       0x68 ./Startup_Code/newlib_stubs.o
+ .text._stat    0x00000000       0x1a ./Startup_Code/newlib_stubs.o
+ .text._times   0x00000000        0xa ./Startup_Code/newlib_stubs.o
+ .text._unlink  0x00000000       0x12 ./Startup_Code/newlib_stubs.o
+ .text._wait    0x00000000       0x12 ./Startup_Code/newlib_stubs.o
+ .text.write    0x00000000       0x78 ./Startup_Code/newlib_stubs.o
+ .text          0x00000000        0x0 ./Startup_Code/startup_gcc_m68k_elf.o
+ .data          0x00000000        0x0 ./Startup_Code/startup_gcc_m68k_elf.o
+ .bss           0x00000000        0x0 ./Startup_Code/startup_gcc_m68k_elf.o
+ .group         0x00000000        0x8 ./Startup_Code/system.o
+ .group         0x00000000        0x8 ./Startup_Code/system.o
+ .group         0x00000000        0x8 ./Startup_Code/system.o
+ .group         0x00000000        0x8 ./Startup_Code/system.o
+ .group         0x00000000        0x8 ./Startup_Code/system.o
+ .text          0x00000000        0x0 ./Startup_Code/system.o
+ .data          0x00000000        0x0 ./Startup_Code/system.o
+ .bss           0x00000000        0x0 ./Startup_Code/system.o
+ .debug_macro   0x00000000      0x50e ./Startup_Code/system.o
+ .debug_macro   0x00000000       0x16 ./Startup_Code/system.o
+ .group         0x00000000        0x8 ./Startup_Code/vectors.o
+ .group         0x00000000        0x8 ./Startup_Code/vectors.o
+ .group         0x00000000        0x8 ./Startup_Code/vectors.o
+ .group         0x00000000        0x8 ./Startup_Code/vectors.o
+ .group         0x00000000        0x8 ./Startup_Code/vectors.o
+ .text          0x00000000        0x0 ./Startup_Code/vectors.o
+ .data          0x00000000        0x0 ./Startup_Code/vectors.o
+ .bss           0x00000000        0x0 ./Startup_Code/vectors.o
+ .debug_macro   0x00000000      0x50e ./Startup_Code/vectors.o
+ .debug_macro   0x00000000       0x16 ./Startup_Code/vectors.o
+ .debug_macro   0x00000000       0x44 ./Startup_Code/vectors.o
+ .debug_macro   0x00000000      0x209 ./Startup_Code/vectors.o
+ .debug_macro   0x00000000     0x641f ./Startup_Code/vectors.o
+ .group         0x00000000        0x8 ./Sources/main.o
+ .group         0x00000000        0x8 ./Sources/main.o
+ .group         0x00000000        0x8 ./Sources/main.o
+ .text          0x00000000        0x0 ./Sources/main.o
+ .data          0x00000000        0x0 ./Sources/main.o
+ .bss           0x00000000        0x0 ./Sources/main.o
+ .debug_macro   0x00000000      0x50e ./Sources/main.o
+ .debug_macro   0x00000000     0x641f ./Sources/main.o
+ .data          0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-exit.o)
+ .bss           0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-exit.o)
+ .data          0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-fini.o)
+ .bss           0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-fini.o)
+ .text          0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-impure.o)
+ .bss           0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-impure.o)
+ .text          0x00000000      0x170 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+ .data          0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+ .bss           0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+ .debug_info    0x00000000      0x84a c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+ .debug_abbrev  0x00000000      0x1d7 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+ .debug_loc     0x00000000       0x44 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+ .debug_aranges
+                0x00000000       0x20 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+ .debug_ranges  0x00000000       0x18 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+ .debug_line    0x00000000      0x1b2 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+ .debug_str     0x00000000      0x500 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+ .comment       0x00000000       0x12 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+ .debug_frame   0x00000000       0x50 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+ COMMON         0x00000000        0x4 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-reent.o)
+ .text          0x00000000       0xdc c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-freer.o)
+ .data          0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-freer.o)
+ .bss           0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-freer.o)
+ .debug_info    0x00000000      0x823 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-freer.o)
+ .debug_abbrev  0x00000000      0x1b6 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-freer.o)
+ .debug_loc     0x00000000      0x10a c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-freer.o)
+ .debug_aranges
+                0x00000000       0x20 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-freer.o)
+ .debug_ranges  0x00000000       0x18 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-freer.o)
+ .debug_line    0x00000000      0x19d c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-freer.o)
+ .debug_str     0x00000000      0x539 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-freer.o)
+ .comment       0x00000000       0x12 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-freer.o)
+ .debug_frame   0x00000000       0x30 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-freer.o)
+ .text          0x00000000      0x13e c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-mallocr.o)
+ .data          0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-mallocr.o)
+ .bss           0x00000000        0x8 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-mallocr.o)
+ .debug_info    0x00000000      0x8d2 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-mallocr.o)
+ .debug_abbrev  0x00000000      0x239 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-mallocr.o)
+ .debug_loc     0x00000000      0x1db c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-mallocr.o)
+ .debug_aranges
+                0x00000000       0x20 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-mallocr.o)
+ .debug_ranges  0x00000000       0x40 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-mallocr.o)
+ .debug_line    0x00000000      0x1e3 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-mallocr.o)
+ .debug_str     0x00000000      0x56e c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-mallocr.o)
+ .comment       0x00000000       0x12 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x00000000       0x34 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-nano-mallocr.o)
+ .text          0x00000000       0x32 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-sbrkr.o)
+ .data          0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-sbrkr.o)
+ .bss           0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-sbrkr.o)
+ .debug_info    0x00000000      0x7a1 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-sbrkr.o)
+ .debug_abbrev  0x00000000      0x196 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-sbrkr.o)
+ .debug_aranges
+                0x00000000       0x20 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-sbrkr.o)
+ .debug_line    0x00000000      0x186 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-sbrkr.o)
+ .debug_str     0x00000000      0x4d7 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-sbrkr.o)
+ .comment       0x00000000       0x12 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-sbrkr.o)
+ .debug_frame   0x00000000       0x2c c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-sbrkr.o)
+ .data          0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtend.o
+ .bss           0x00000000        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtend.o
+ .eh_frame      0x00000000        0x4 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtend.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+io               0xffc00000         0x00000010         rw
+io_1             0xffff8000         0x00008000         rw
+rom              0x00000000         0x00020000         xr
+ram              0x00800000         0x00002000         xrw
+gdbGuard         0x00802000         0x00000020         r
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtbegin.o
+LOAD ./Startup_Code/newlib_stubs.o
+LOAD ./Startup_Code/startup_gcc_m68k_elf.o
+LOAD ./Startup_Code/system.o
+LOAD ./Startup_Code/vectors.o
+LOAD ./Sources/main.o
+LOAD c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe\libgcc.a
+LOAD c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a
+LOAD c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe\libgcc.a
+LOAD c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtend.o
+START GROUP
+LOAD c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a
+LOAD c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libunhosted.a
+LOAD c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libcf.a
+END GROUP
+                0x00000000                __DYNAMIC = 0x0
+                0x00000800                __stack_size = 0x800
+                0x00000008                __gdbstack_fix = 0x8
+                0x00000800                __heap_size = 0x800
+
+.text           0x00000000      0x7e4
+                0x00000000                __flash_start = .
+ *(.interrupt_vectors)
+ .interrupt_vectors
+                0x00000000      0x400 ./Startup_Code/vectors.o
+                0x00000000                __vector_table
+                0x00000001                ASSERT ((. != __flash_start), No interrupt vector)
+                0x00000400                . = (__flash_start + 0x400)
+ *(.security_information)
+ .security_information
+                0x00000400       0x10 ./Startup_Code/vectors.o
+                0x00000400                securityInfo
+                0x00000001                ASSERT ((. == (__flash_start + 0x410)), No security information)
+ *(.text .text.*)
+ .text          0x00000410      0x12c c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtbegin.o
+ .text._exit    0x0000053c        0x8 ./Startup_Code/newlib_stubs.o
+                0x0000053c                _exit
+ .text.init     0x00000544       0xe8 ./Startup_Code/startup_gcc_m68k_elf.o
+                0x00000544                __HardReset
+ .text.clock_initialise
+                0x0000062c        0x8 ./Startup_Code/system.o
+                0x0000062c                clock_initialise
+ .text.uart_initialise
+                0x00000634        0x8 ./Startup_Code/system.o
+                0x00000634                uart_initialise
+ .text.SystemInit
+                0x0000063c       0x26 ./Startup_Code/system.o
+                0x0000063c                SystemInit
+ .text.hardware_init_hook
+                0x00000662        0x8 ./Startup_Code/system.o
+                0x00000662                hardware_init_hook
+ .text.software_init_hook
+                0x0000066a        0x8 ./Startup_Code/system.o
+                0x0000066a                software_init_hook
+ .text.Default_Handler
+                0x00000672        0x8 ./Startup_Code/vectors.o
+                0x00000672                Trap12_Handler
+                0x00000672                Int_SCI2_Err_Handler
+                0x00000672                Int_L4_SWI_Handler
+                0x00000672                NonPCBreakpoint_Handler
+                0x00000672                Trap8_Handler
+                0x00000672                Int_SCI1_Tx_Handler
+                0x00000672                IllegalInstruction_Handler
+                0x00000672                AutoVector7_Handler
+                0x00000672                Int_L3_SWI_Handler
+                0x00000672                Int_SCI1_Err_Handler
+                0x00000672                Trap0_Handler
+                0x00000672                UnimplementedLineF_Handler
+                0x00000672                Int_TPM3_Ch3_Handler
+                0x00000672                AutoVector4_Handler
+                0x00000672                PCBreakpoint_Handler
+                0x00000672                Int_TPM3_Ch5_Handler
+                0x00000672                Trap4_Handler
+                0x00000672                Int_I2C_Handler
+                0x00000672                Int_SPI1_Handler
+                0x00000672                PrivilegeViolation_Handler
+                0x00000672                AccessError_Handler
+                0x00000672                Trap9_Handler
+                0x00000672                Int_L1_SWI_Handler
+                0x00000672                Int_TPM2_Ch2_Handler
+                0x00000672                Int_ACMP_Handler
+                0x00000672                Int_TPM3_Ch4_Handler
+                0x00000672                Uninitialized_Handler
+                0x00000672                UnimplementedLineA_Handler
+                0x00000672                Int_TPM1_Ch1_Handler
+                0x00000672                Int_TPM3_Ch2_Handler
+                0x00000672                Int_TPM2_Ch1_Handler
+                0x00000672                Trap10_Handler
+                0x00000672                Int_TPM2_Ovf_Handler
+                0x00000672                AutoVector1_Handler
+                0x00000672                Trap14_Handler
+                0x00000672                Int_SPI2_Handler
+                0x00000672                Int_TPM2_Ch0_Handler
+                0x00000672                Int_L5_SWI_Handler
+                0x00000672                Int_UnsuppportedInstr_Handler
+                0x00000672                Int_LVD_Handler
+                0x00000672                Int_TPM1_Ch2_Handler
+                0x00000672                Int_L6_SWI_Handler
+                0x00000672                Default_Handler
+                0x00000672                Trap11_Handler
+                0x00000672                Int_TPM3_Ch1_Handler
+                0x00000672                Trap5_Handler
+                0x00000672                Int_ADC_Handler
+                0x00000672                Int_SCI2_Rx_Handler
+                0x00000672                FormatError_Handler
+                0x00000672                Int_L7_SWI_Handler
+                0x00000672                Trap13_Handler
+                0x00000672                Trap2_Handler
+                0x00000672                Trace_Handler
+                0x00000672                Int_TPM1_Ch0_Handler
+                0x00000672                AutoVector6_Handler
+                0x00000672                AutoVector2_Handler
+                0x00000672                AutoVector3_Handler
+                0x00000672                Trap6_Handler
+                0x00000672                Int_KBI_Handler
+                0x00000672                Trap3_Handler
+                0x00000672                Int_RTC_Handler
+                0x00000672                Int_TPM1_Ovf_Handler
+                0x00000672                Int_L2_SWI_Handler
+                0x00000672                Trap1_Handler
+                0x00000672                DivideBy0_Handler
+                0x00000672                Int_SCI1_Rx_Handler
+                0x00000672                Int_TPM3_Ch0_Handler
+                0x00000672                AddressError_Handler
+                0x00000672                Int_TPM3_Ovf_Handler
+                0x00000672                Int_Irq_Handler
+                0x00000672                Trap15_Handler
+                0x00000672                Trap7_Handler
+                0x00000672                Int_SCI2_Tx_Handler
+                0x00000672                AutoVector5_Handler
+                0x00000672                SpuriousInt_Handler
+ .text.main     0x0000067a       0x7a ./Sources/main.o
+                0x0000067a                main
+ .text          0x000006f4       0x38 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-exit.o)
+                0x000006f4                exit
+ .text          0x0000072c       0x48 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-fini.o)
+                0x0000072c                __libc_fini_array
+ .text          0x00000774       0x32 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtend.o
+ *(.gnu.linkonce.t.*)
+ *(.init)
+ .init          0x000007a6        0x6 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtbegin.o
+ .init          0x000007ac        0x6 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtend.o
+ *(.fini)
+ .fini          0x000007b2        0x6 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtbegin.o
+                0x000007b8                . = ALIGN (0x4)
+                0x000007b8                __CTOR_LIST__ = .
+ *crtbegin.o(.ctors)
+ .ctors         0x000007b8        0x4 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtbegin.o
+ *(EXCLUDE_FILE(*crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *crtend.o(.ctors)
+ .ctors         0x000007bc        0x4 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtend.o
+                0x000007c0                __DTOR_LIST__ = .
+ *crtbegin.o(.dtors)
+ .dtors         0x000007c0        0x4 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtbegin.o
+ *(EXCLUDE_FILE(*crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *crtend.o(.dtors)
+ .dtors         0x000007c4        0x4 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtend.o
+                0x000007c4                __DTOR_END__
+                0x000007c8                . = ALIGN (0x4)
+ *crtbegin.o(.jcr)
+ .jcr           0x000007c8        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtbegin.o
+ *(EXCLUDE_FILE(*crtend.o) .jcr)
+ *crtend.o(.jcr)
+ .jcr           0x000007c8        0x4 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtend.o
+ *(.rodata .rodata.*)
+ .rodata        0x000007cc        0x4 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-impure.o)
+                0x000007cc                _global_impure_ptr
+ .rodata.str1.1
+                0x000007d0        0x2 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-impure.o)
+ *(.gnu.linkonce.r.*)
+                0x000007d4                . = ALIGN (0x4)
+ *fill*         0x000007d2        0x2 
+ *(.gcc_except_table)
+                0x000007d4                . = ALIGN (0x4)
+ *(.eh_frame)
+ .eh_frame      0x000007d4        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtbegin.o
+                0x000007d4                . = ALIGN (0x4)
+                0x000007d4                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                0x000007d4                PROVIDE (__preinit_array_end, .)
+                0x000007d4                . = ALIGN (0x4)
+                0x000007d4                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x000007d4                PROVIDE (__init_array_end, .)
+                0x000007d4                . = ALIGN (0x4)
+                0x000007d4                PROVIDE (__fini_array_start, .)
+ *(SORT(.fini_array.*))
+ *(.fini_array)
+                0x000007d4                PROVIDE (__fini_array_end, .)
+                0x000007d4                . = ALIGN (0x4)
+                0x000007d4                _init = .
+                0x000007d4        0x4 LONG 0x4e560000
+ *(.init)
+                0x000007d8        0x2 SHORT 0x4e5e
+                0x000007da        0x2 SHORT 0x4e75
+                0x000007dc                . = ALIGN (0x4)
+                0x000007dc                _fini = .
+                0x000007dc        0x4 LONG 0x4e560000
+ *(.fini)
+                0x000007e0        0x2 SHORT 0x4e5e
+                0x000007e2        0x2 SHORT 0x4e75
+ *(.lit)
+                0x000007e4                . = ALIGN (0x4)
+                0x000007e4                _etext = .
+
+.data           0x00800000       0x64 load address 0x000007e4
+                0x000007e4                __data_load = LOADADDR (.data)
+                0x00800000                __data_start = .
+ *(.got.plt)
+ *(.got)
+ *(.shdata)
+ *(.data .data.*)
+ .data          0x00800000       0x64 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-impure.o)
+                0x00800000                _impure_ptr
+ *(.gnu.linkonce.d.*)
+                0x00800064                . = ALIGN (0x4)
+                0x00800064                _edata = .
+
+.tm_clone_table
+                0x00800064        0x0 load address 0x00000848
+ .tm_clone_table
+                0x00800064        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtbegin.o
+ .tm_clone_table
+                0x00800064        0x0 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtend.o
+
+.bss            0x00800064       0x24 load address 0x00000848
+                0x00800064                __bss_start__ = .
+                0x00800064                __bss_start = __bss_start__
+ *(.shbss)
+ *(.bss .bss.*)
+ .bss           0x00800064       0x1e c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtbegin.o
+ *(.gnu.linkonce.b.*)
+ *(COMMON)
+                0x00800088                . = ALIGN (0x8)
+ *fill*         0x00800082        0x6 
+                0x00800088                __bss_end__ = .
+                0x00800088                _end = __bss_end__
+                0x00800088                __end = __bss_end__
+
+.heap_dummy     0x00800088      0x800 load address 0x00000848
+                0x00800088                . = ALIGN (0x4)
+                0x00800088                PROVIDE (end, .)
+                0x00800088                PROVIDE (__end__, .)
+                0x00800088                PROVIDE (_end, .)
+                0x00800088                __HeapBottom = .
+                0x00800088                __heap_addr = .
+                0x00800888                . = (. + __heap_size)
+ *fill*         0x00800088      0x800 
+                0x00801ff8                __StackTop = ((ORIGIN (ram) + 0x2000) - __gdbstack_fix)
+                0x00801800                __HeapLimit = ((ORIGIN (ram) + 0x2000) - __stack_size)
+                0x00801800                __StackLimit = ((ORIGIN (ram) + 0x2000) - __stack_size)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x1a8
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0xb0 ./Startup_Code/newlib_stubs.o
+ .debug_aranges
+                0x000000b0       0x20 ./Startup_Code/startup_gcc_m68k_elf.o
+ .debug_aranges
+                0x000000d0       0x40 ./Startup_Code/system.o
+ .debug_aranges
+                0x00000110       0x20 ./Startup_Code/vectors.o
+ .debug_aranges
+                0x00000130       0x20 ./Sources/main.o
+ .debug_aranges
+                0x00000150       0x20 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-exit.o)
+ .debug_aranges
+                0x00000170       0x20 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-fini.o)
+ .debug_aranges
+                0x00000190       0x18 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-impure.o)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000     0x1cd1
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0x6d1 ./Startup_Code/newlib_stubs.o
+ .debug_info    0x000006d1       0x6e ./Startup_Code/startup_gcc_m68k_elf.o
+ .debug_info    0x0000073f       0xee ./Startup_Code/system.o
+ .debug_info    0x0000082d      0x1b9 ./Startup_Code/vectors.o
+ .debug_info    0x000009e6      0x29f ./Sources/main.o
+ .debug_info    0x00000c85      0x77f c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-exit.o)
+ .debug_info    0x00001404       0xef c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-fini.o)
+ .debug_info    0x000014f3      0x7de c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-impure.o)
+
+.debug_abbrev   0x00000000      0x730
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x19e ./Startup_Code/newlib_stubs.o
+ .debug_abbrev  0x0000019e       0x14 ./Startup_Code/startup_gcc_m68k_elf.o
+ .debug_abbrev  0x000001b2       0x91 ./Startup_Code/system.o
+ .debug_abbrev  0x00000243       0xd1 ./Startup_Code/vectors.o
+ .debug_abbrev  0x00000314       0xae ./Sources/main.o
+ .debug_abbrev  0x000003c2      0x17b c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-exit.o)
+ .debug_abbrev  0x0000053d       0xbd c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-fini.o)
+ .debug_abbrev  0x000005fa      0x136 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-impure.o)
+
+.debug_line     0x00000000      0xc4e
+ *(.debug_line)
+ .debug_line    0x00000000      0x3c7 ./Startup_Code/newlib_stubs.o
+ .debug_line    0x000003c7       0x98 ./Startup_Code/startup_gcc_m68k_elf.o
+ .debug_line    0x0000045f      0x214 ./Startup_Code/system.o
+ .debug_line    0x00000673      0x1cb ./Startup_Code/vectors.o
+ .debug_line    0x0000083e       0xa2 ./Sources/main.o
+ .debug_line    0x000008e0      0x18e c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-exit.o)
+ .debug_line    0x00000a6e       0xc5 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-fini.o)
+ .debug_line    0x00000b33      0x11b c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-impure.o)
+
+.debug_frame    0x00000000      0x324
+ *(.debug_frame)
+ .debug_frame   0x00000000      0x1dc ./Startup_Code/newlib_stubs.o
+ .debug_frame   0x000001dc       0x8c ./Startup_Code/system.o
+ .debug_frame   0x00000268       0x2c ./Startup_Code/vectors.o
+ .debug_frame   0x00000294       0x30 ./Sources/main.o
+ .debug_frame   0x000002c4       0x30 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-exit.o)
+ .debug_frame   0x000002f4       0x30 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-fini.o)
+
+.debug_str      0x00000000    0x1f355
+ *(.debug_str)
+ .debug_str     0x00000000     0x51fb ./Startup_Code/newlib_stubs.o
+                               0x540a (size before relaxing)
+ .debug_str     0x000051fb    0x198fa ./Startup_Code/system.o
+                              0x1bba8 (size before relaxing)
+ .debug_str     0x0001eaf5      0x111 ./Startup_Code/vectors.o
+                              0x1bc03 (size before relaxing)
+ .debug_str     0x0001ec06      0x1bb ./Sources/main.o
+                              0x1b293 (size before relaxing)
+ .debug_str     0x0001edc1      0x3e3 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-exit.o)
+                                0x4ea (size before relaxing)
+ .debug_str     0x0001f1a4       0xcf c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-fini.o)
+                                0x1a4 (size before relaxing)
+ .debug_str     0x0001f273       0xe2 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-impure.o)
+                                0x520 (size before relaxing)
+
+.debug_loc      0x00000000       0x2b
+ *(.debug_loc)
+ .debug_loc     0x00000000       0x2b c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-fini.o)
+
+.comment        0x00000000       0x11
+ .comment       0x00000000       0x11 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtbegin.o
+                                 0x12 (size before relaxing)
+ .comment       0x00000000       0x12 ./Startup_Code/newlib_stubs.o
+ .comment       0x00000000       0x12 ./Startup_Code/system.o
+ .comment       0x00000000       0x12 ./Startup_Code/vectors.o
+ .comment       0x00000000       0x12 ./Sources/main.o
+ .comment       0x00000000       0x12 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-exit.o)
+ .comment       0x00000000       0x12 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-fini.o)
+ .comment       0x00000000       0x12 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/../../../../m68k-elf/lib/m51qe\libc.a(lib_a-impure.o)
+ .comment       0x00000000       0x12 c:/program files/pgo/gcc-m68k-elf/bin/../lib/gcc/m68k-elf/4.8.3/m51qe/crtend.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(blink.elf elf32-m68k)
+
+.debug_ranges   0x00000000       0xf0
+ .debug_ranges  0x00000000       0xa0 ./Startup_Code/newlib_stubs.o
+ .debug_ranges  0x000000a0       0x30 ./Startup_Code/system.o
+ .debug_ranges  0x000000d0       0x10 ./Startup_Code/vectors.o
+ .debug_ranges  0x000000e0       0x10 ./Sources/main.o
+
+.debug_macro    0x00000000     0x7e50
+ .debug_macro   0x00000000      0x13e ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x0000013e      0x50e ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x0000064c       0x10 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x0000065c       0x16 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x00000672       0x35 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x000006a7       0xa3 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x0000074a      0x166 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x000008b0       0x4a ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x000008fa       0x52 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x0000094c       0x16 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x00000962       0x43 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x000009a5      0x180 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x00000b25      0x23b ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x00000d60      0x20f ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x00000f6f       0x10 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x00000f7f       0x35 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x00000fb4       0x16 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x00000fca       0x10 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x00000fda       0x22 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x00000ffc       0xbd ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x000010b9       0x2e ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x000010e7      0x120 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x00001207       0x16 ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x0000121d      0x48e ./Startup_Code/newlib_stubs.o
+ .debug_macro   0x000016ab       0x6b ./Startup_Code/system.o
+ .debug_macro   0x00001716       0x44 ./Startup_Code/system.o
+ .debug_macro   0x0000175a      0x209 ./Startup_Code/system.o
+ .debug_macro   0x00001963     0x641f ./Startup_Code/system.o
+ .debug_macro   0x00007d82       0x5b ./Startup_Code/vectors.o
+ .debug_macro   0x00007ddd       0x2d ./Sources/main.o
+ .debug_macro   0x00007e0a       0x46 ./Sources/main.o
