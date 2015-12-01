@@ -1,0 +1,5 @@
+/Sources/
+/Startup_Code/
+*.map
+*.size
+*.sym
