@@ -7,7 +7,7 @@
 #include "BRTOS.h"
 #include "OSInfo.h"
 
-int mem_cpy(char *dst, char *src)
+static int mem_cpy(char *dst, const char *src)
 {
 	int i = 0;
 	while(*src)
@@ -18,10 +18,10 @@ int mem_cpy(char *dst, char *src)
 	return i;
 }
 
-char *PrintDecimal(INT16S val, CHAR8 *buff)
+char *PrintDecimal(int16_t val, CHAR8 *buff)
 {
-   INT16U backup;
-   INT32U i = 0;
+   uint16_t backup;
+   uint32_t i = 0;
    CHAR8 s = ' ';
 
    // Fill buffer with spaces
@@ -67,19 +67,21 @@ char *PrintDecimal(INT16S val, CHAR8 *buff)
 /* Tasks are reported as blocked ('B'), ready ('R') or suspended ('S'). */
 void OSTaskList(char *string)
 {
-    INT16U VirtualStack = 0;
-    INT8U  j = 0;
-    INT8U  i = 0;
-    INT8U  prio = 0;
+    uint16_t VirtualStack = 0;
+    uint8_t  j = 0;
+#ifndef WATERMARK
+    uint8_t  i = 0;
+#endif
+    uint8_t  prio = 0;
     CHAR8  str[9];
-    INT32U *sp_end = 0;
-    INT32U *sp_address = 0;
-
-    string += mem_cpy(string,"\n\r***************************************************\n\r");
-    string += mem_cpy(string,"ID   NAME            STATE   PRIORITY   STACK SIZE\n\r");
-    string += mem_cpy(string,"***************************************************\n\r");
-
+    uint32_t *sp_end = 0;
+    uint32_t *sp_address = 0;
     int z,count;
+    
+    string += mem_cpy(string,"\n\r***********************************************************\n\r");
+    string += mem_cpy(string,"ID   NAME                    STATE   PRIORITY   STACK SIZE\n\r");
+    string += mem_cpy(string,"***********************************************************\n\r");
+
 	#if (!BRTOS_DYNAMIC_TASKS_ENABLED)
     for (j=1;j<=NumberOfInstalledTasks;j++)
 	#else
@@ -102,7 +104,7 @@ void OSTaskList(char *string)
 			  string +=z;
 
 			  // Task name align
-			  for(count=0;count<(16-z);count++)
+			  for(count=0;count<(24-z);count++)
 			  {
 				  *string++ = ' ';
 			  }
@@ -133,25 +135,37 @@ void OSTaskList(char *string)
 
 			  // Print the task stack size
 			  UserEnterCritical();
-			  sp_address = (INT32U*)ContextTask[j].StackPoint;
+			  sp_address = (uint32_t*)ContextTask[j].StackPoint;
 			  if (j == 1)
 			  {
 				  #if (!BRTOS_DYNAMIC_TASKS_ENABLED)
-				  sp_end = (INT32U*)&STACK[0];
+				  sp_end = (uint32_t*)&STACK[0];
 				  #else
-				  sp_end = (INT32U*)ContextTask[1].StackInit;
+				  sp_end = (uint32_t*)ContextTask[1].StackInit;
 				  #endif
 			  }else
 			  {
 				  #if (!BRTOS_DYNAMIC_TASKS_ENABLED)
-				  sp_end = (INT32U*)ContextTask[j-1].StackInit;
+				  sp_end = (uint32_t*)ContextTask[j-1].StackInit;
 				  #else
-				  sp_end = (INT32U*)ContextTask[j].StackInit;
+				  sp_end = (uint32_t*)ContextTask[j].StackInit;
 				  #endif
 			  }
 			  UserExitCritical();
 
 			  // Find for at least 16 available sp data into task stack
+			  #ifdef WATERMARK
+			  sp_address = sp_end;
+			  sp_address++;
+			  do
+			  {
+				  if (*sp_address != 0x24242424)
+				  {
+					  break;
+				  }
+				  sp_address++;
+			  }while((uint32_t)sp_address <= ContextTask[j].StackInit);			  
+			  #else
 			  i = 0;
 			  while(i<16)
 			  {
@@ -168,13 +182,21 @@ void OSTaskList(char *string)
 				}
 				sp_address--;
 			  }
-
+			  #endif
 
 			  UserEnterCritical();
 			  #if (!BRTOS_DYNAMIC_TASKS_ENABLED)
-			  VirtualStack = ContextTask[j].StackInit - ((INT32U)sp_address + (i*4));
+			  #ifdef WATERMARK
+			  VirtualStack = ContextTask[j].StackInit - ((uint32_t)sp_address + 4);
 			  #else
-			  VirtualStack = (ContextTask[j].StackInit + (INT32U)ContextTask[j].StackSize) - ((INT32U)sp_address + (i*4));
+			  VirtualStack = ContextTask[j].StackInit - ((uint32_t)sp_address + (i*4));
+			  #endif
+			  #else
+			  #ifdef WATERMARK
+			  VirtualStack = (ContextTask[j].StackInit + (uint32_t)ContextTask[j].StackSize) - ((uint32_t)sp_address + 4);
+			  #else
+			  VirtualStack = (ContextTask[j].StackInit + (uint32_t)ContextTask[j].StackSize) - ((uint32_t)sp_address + (i*4));
+			  #endif
 			  #endif
 			  UserExitCritical();
 
@@ -191,12 +213,96 @@ void OSTaskList(char *string)
     *string = '\0';
 }
 
+#if (COMPUTES_TASK_LOAD == 1)
+#include <string.h>
+#include <stdio.h>
+void OSRuntimeStats(char *string)
+{
+    uint8_t  j = 0;
+    CHAR8  str[16];
+    int z,count;
+    uint32_t runtime, total_time, percentage;
+
+    string += mem_cpy(string,"\n\r**********************************************\n\r");
+    string += mem_cpy(string,"ID   NAME                    Abs Time   % Time \n\r");
+    string += mem_cpy(string,"**********************************************\n\r");
+
+    total_time = OSGetTimerForRuntimeStats();
+    total_time /= 100UL;
+
+	#if (!BRTOS_DYNAMIC_TASKS_ENABLED)
+    for (j=1;j<=NumberOfInstalledTasks;j++)
+	#else
+    for (j=1;j<=NUMBER_OF_TASKS;j++)
+	#endif
+    {
+		  if (ContextTask[j].Priority != EMPTY_PRIO){
+			  *string++ = '[';
+			  if (j<10){
+				  *string++ = j+'0';
+				  string += mem_cpy(string, "]  ");
+			  }else{
+				  (void)PrintDecimal(j, str);
+				  string += mem_cpy(string, (str+4));
+				  string += mem_cpy(string, "] ");
+			  }
+
+			  // Print task name
+			  z = mem_cpy(string,(char*)ContextTask[j].TaskName);
+			  string +=z;
+
+			  // Task name align
+			  for(count=0;count<(24-z);count++){
+				  *string++ = ' ';
+			  }
+
+			  // Get task runtime
+			  UserEnterCritical();
+			  runtime = ContextTask[j].Runtime;
+			  UserExitCritical();
+
+			  // Percentage calculation
+			  percentage = runtime / total_time;
+
+
+			  // Print task runtime
+			  sprintf( str, "%u", (unsigned int) runtime);
+			  z = mem_cpy(string,str);
+			  string +=z;
+
+			  // Align
+			  for(count=0;count<(12-z);count++){
+				  *string++ = ' ';
+			  }
+
+			  if( percentage > 0UL ){
+				  // Print percentage
+				  sprintf( str, "%u%%", (unsigned int)percentage);
+			  }
+			  else{
+				  // If percentace is zero, print <1%
+				  sprintf( str, "<1%%");
+			  }
+
+			  string += mem_cpy(string,str);
+			  string += mem_cpy(string,"\n\r");
+		  }
+    }
+
+    string += mem_cpy(string, "\n\r");
+
+    // End of string
+    *string = '\0';
+}
+#endif
+
+
 
 // memoria total heap de tarefas
 // memoria total heap de filas
 void OSAvailableMemory(char *string)
 {
-    INT16U address = 0;
+    uint16_t address = 0;
     CHAR8  str[8];
 
     string += mem_cpy(string, "\n\r***** BRTOS Memory Info *****\n\r");
@@ -213,7 +319,7 @@ void OSAvailableMemory(char *string)
 #if (!BRTOS_DYNAMIC_TASKS_ENABLED)
     (void)PrintDecimal(address, str);
 #else
-    (void)PrintDecimal((INT16S)OSGetUsedHeapSize(), str);
+    (void)PrintDecimal((int16_t)OSGetUsedHeapSize(), str);
 #endif
     string += mem_cpy(string, &str[2]);
     string += mem_cpy(string, " of ");
@@ -284,9 +390,9 @@ void OSUptimeInfo(char *string)
 #if (COMPUTES_CPU_LOAD == 1)
 void OSCPULoad(char *string)
 {
-    INT32U percent = 0;
-    INT8U caracter = 0;
-    INT8U cent,dez;
+    uint32_t percent = 0;
+    uint8_t caracter = 0;
+    uint8_t cent,dez;
 
     UserEnterCritical();
     percent = LastOSDuty;

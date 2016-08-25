@@ -58,7 +58,7 @@
 
 #include "BRTOS.h"
 
-#if (PROCESSOR == COLDFIRE_V1)
+#if (PROCESSOR == COLDFIRE_V1 && __CWCC__)
 #pragma warn_implicitconv off
 #endif
 
@@ -70,7 +70,7 @@
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-INT8U OSMutexCreate (BRTOS_Mutex **event, INT8U HigherPriority)
+uint8_t OSMutexCreate (BRTOS_Mutex **event, uint8_t HigherPriority)
 {
   OS_SR_SAVE_VAR
   int i=0;
@@ -85,16 +85,20 @@ INT8U OSMutexCreate (BRTOS_Mutex **event, INT8U HigherPriority)
   if (currentTask)
      OSEnterCritical();
   
-  if (PriorityVector[HigherPriority] != EMPTY_PRIO)
-  {
-      // Exit critical Section
-      if (currentTask)
-        OSExitCritical();
-      return BUSY_PRIORITY;                          // The priority is busy
+  /* If HigherPriority is set to zero, do not use priority ceiling in the mutex.
+   * In such case, the mutex is the same of a binary semaphore adding ownership feature. */
+  if (HigherPriority > 0){
+	  if (PriorityVector[HigherPriority] != EMPTY_PRIO)
+	  {
+		  // Exit critical Section
+		  if (currentTask)
+			OSExitCritical();
+		  return BUSY_PRIORITY;                          // The priority is busy
+	  }
+
+	  // Allocate priority to the mutex
+	  PriorityVector[HigherPriority] = MUTEX_PRIO;
   }
-  
-  // Allocate priority to the mutex
-  PriorityVector[HigherPriority] = MUTEX_PRIO;
 
   // Verifica se ainda há blocos de controle de eventos disponíveis
   for(i=0;i<=BRTOS_MAX_MUTEX;i++)
@@ -153,7 +157,7 @@ INT8U OSMutexCreate (BRTOS_Mutex **event, INT8U HigherPriority)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-INT8U OSMutexDelete (BRTOS_Mutex **event)
+uint8_t OSMutexDelete (BRTOS_Mutex **event)
 {
   OS_SR_SAVE_VAR
   BRTOS_Mutex *pont_event;
@@ -198,11 +202,11 @@ INT8U OSMutexDelete (BRTOS_Mutex **event)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-INT8U OSMutexAcquire(BRTOS_Mutex *pont_event, INT16U time_wait)
+uint8_t OSMutexAcquire(BRTOS_Mutex *pont_event, ostick_t time_wait)
 {
   OS_SR_SAVE_VAR
-  INT8U  iPriority = 0;
-  INT32U timeout;
+  uint8_t  iPriority = 0;
+  osdtick_t timeout;
   ContextType *Task;
 
   
@@ -315,16 +319,20 @@ INT8U OSMutexAcquire(BRTOS_Mutex *pont_event, INT16U time_wait)
     // Set timeout overflow
     if (time_wait)
     {
-      timeout = (INT32U)((INT32U)OSGetCount() + (INT32U)time_wait);
+  	  timeout = (osdtick_t)((osdtick_t)OSGetCount() + (osdtick_t)time_wait);
 
-      if (timeout >= TICK_COUNT_OVERFLOW)
-      {
-        Task->TimeToWait = (INT16U)(timeout - TICK_COUNT_OVERFLOW);
-      }
-      else
-      {
-        Task->TimeToWait = (INT16U)timeout;
-      }
+  	  if (sizeof_ostick_t < 8){
+  		  if (timeout >= TICK_COUNT_OVERFLOW)
+  		  {
+  			  Task->TimeToWait = (ostick_t)(timeout - TICK_COUNT_OVERFLOW);
+  		  }
+  		  else
+  		  {
+  			  Task->TimeToWait = (ostick_t)timeout;
+  		  }
+  	  }else{
+  		  Task->TimeToWait = (ostick_t)timeout;
+  	  }
 
       // Put task into delay list
       IncludeTaskIntoDelayList();
@@ -409,12 +417,12 @@ INT8U OSMutexAcquire(BRTOS_Mutex *pont_event, INT16U time_wait)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-INT8U OSMutexRelease(BRTOS_Mutex *pont_event)
+uint8_t OSMutexRelease(BRTOS_Mutex *pont_event)
 {
   OS_SR_SAVE_VAR
-  INT8U iPriority = (INT8U)0;
+  uint8_t iPriority = (uint8_t)0;
   #if (VERBOSE == 1)
-  INT8U TaskSelect = 0;
+  uint8_t TaskSelect = 0;
   #endif
   
   #if (ERROR_CHECK == 1)      
@@ -518,7 +526,10 @@ INT8U OSMutexRelease(BRTOS_Mutex *pont_event)
       
   // Release Mutex
   pont_event->OSEventState = AVAILABLE_RESOURCE;
-  PriorityVector[pont_event->OSMaxPriority] = MUTEX_PRIO;
+
+  if (pont_event->OSMaxPriority > 0){
+	  PriorityVector[pont_event->OSMaxPriority] = MUTEX_PRIO;
+  }
       
   // Exit Critical Section
   OSExitCritical();      

@@ -74,7 +74,7 @@
 
 #include "BRTOS.h"
 
-#if (PROCESSOR == COLDFIRE_V1)
+#if (PROCESSOR == COLDFIRE_V1 && __CWCC__)
 #pragma warn_implicitconv off
 #endif
 
@@ -85,7 +85,7 @@
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-INT8U OSSemCreate (INT8U cnt, BRTOS_Sem **event)
+uint8_t OSSemCreate (uint8_t cnt, BRTOS_Sem **event)
 {
   OS_SR_SAVE_VAR
   int i=0;
@@ -157,7 +157,7 @@ INT8U OSSemCreate (INT8U cnt, BRTOS_Sem **event)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-INT8U OSSemBinaryCreate (INT8U bit, BRTOS_Sem **event)
+uint8_t OSSemBinaryCreate (uint8_t bit, BRTOS_Sem **event)
 {
   OS_SR_SAVE_VAR
   int i=0;
@@ -233,7 +233,7 @@ INT8U OSSemBinaryCreate (INT8U bit, BRTOS_Sem **event)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-INT8U OSSemDelete (BRTOS_Sem **event)
+uint8_t OSSemDelete (BRTOS_Sem **event)
 {
   OS_SR_SAVE_VAR
   BRTOS_Sem *pont_event;
@@ -275,11 +275,11 @@ INT8U OSSemDelete (BRTOS_Sem **event)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-INT8U OSSemPend (BRTOS_Sem *pont_event, INT16U time_wait)
+uint8_t OSSemPend (BRTOS_Sem *pont_event, ostick_t time_wait)
 {
   OS_SR_SAVE_VAR
-  INT8U  iPriority = 0;
-  INT32U timeout;
+  uint8_t  iPriority = 0;
+  osdtick_t timeout;
   ContextType *Task;
   
   #if (ERROR_CHECK == 1)
@@ -358,19 +358,23 @@ INT8U OSSemPend (BRTOS_Sem *pont_event, INT16U time_wait)
   // Set timeout overflow
   if (time_wait)
   {  
-    timeout = (INT32U)((INT32U)OSGetCount() + (INT32U)time_wait);
+	  timeout = (osdtick_t)((osdtick_t)OSGetCount() + (osdtick_t)time_wait);
     
-    if (timeout >= TICK_COUNT_OVERFLOW)
-    {
-      Task->TimeToWait = (INT16U)(timeout - TICK_COUNT_OVERFLOW);
-    }
-    else
-    {
-      Task->TimeToWait = (INT16U)timeout;
-    }
+	  if (sizeof_ostick_t < 8){
+		  if (timeout >= TICK_COUNT_OVERFLOW)
+		  {
+			  Task->TimeToWait = (ostick_t)(timeout - TICK_COUNT_OVERFLOW);
+		  }
+		  else
+		  {
+			  Task->TimeToWait = (ostick_t)timeout;
+		  }
+	  }else{
+		  Task->TimeToWait = (ostick_t)timeout;
+	  }
     
-    // Put task into delay list
-    IncludeTaskIntoDelayList();
+	  // Put task into delay list
+	  IncludeTaskIntoDelayList();
   } else
   {
     Task->TimeToWait = NO_TIMEOUT;
@@ -442,12 +446,12 @@ INT8U OSSemPend (BRTOS_Sem *pont_event, INT16U time_wait)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-INT8U OSSemPost(BRTOS_Sem *pont_event)
+uint8_t OSSemPost(BRTOS_Sem *pont_event)
 {
   OS_SR_SAVE_VAR  
-  INT8U iPriority = (INT8U)0;
+  uint8_t iPriority = (uint8_t)0;
   #if (VERBOSE == 1)
-  INT8U TaskSelect = 0;
+  uint8_t TaskSelect = 0;
   #endif
   
   #if (ERROR_CHECK == 1)    

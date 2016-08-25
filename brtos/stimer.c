@@ -25,6 +25,9 @@
 *   Authors:  Carlos Henrique Barriquelo, Gustavo Denardin
 *   Revision: 1.1
 *   Date:     01/05/2015
+*   Authors:  Gustavo Denardin
+*   Revision: 1.9x
+*   Date:     15/05/2016
 *********************************************************************************************************/
 
 
@@ -45,7 +48,7 @@ static struct {
     BRTOS_TIMER_T   mem[BRTOS_MAX_TIMER]; /* array of callback structs */            
     BRTOS_TMR_T*    current;              /* keep current timer list */ 
     BRTOS_TMR_T*    future;               /* keep future timer list   */
-    INT8U           handling_task;        /* caller Task ID */          
+    uint8_t           handling_task;        /* caller Task ID */          
 } BRTOS_TIMER_VECTOR;
 
 
@@ -54,11 +57,11 @@ static BRTOS_TMR_T BRTOS_TMR_PING,BRTOS_TMR_PONG;    /* Timer lists */
 
 /* local functions */
 /* Binary heap of timers */
-#define PAI(i)    (INT8U)(i>>1)
-#define LEFT(i)   (INT8U)(i<<1)
-#define RIGHT(i)  (INT8U)((i<<1) + 1)
+#define PAI(i)    (uint8_t)(i>>1)
+#define LEFT(i)   (uint8_t)(i<<1)
+#define RIGHT(i)  (uint8_t)((i<<1) + 1)
 
-static void Subir (BRTOS_TIMER* timers,INT8U i) {
+static void Subir (BRTOS_TIMER* timers,uint8_t i) {
      while (i > 1 && timers[PAI(i)]->timeout > timers[i]->timeout)
      {
          void* tmp = timers[PAI(i)];
@@ -68,9 +71,9 @@ static void Subir (BRTOS_TIMER* timers,INT8U i) {
      }
 }
 
-static void Descer (BRTOS_TIMER* timers,INT8U i, INT8U n) 
+static void Descer (BRTOS_TIMER* timers,uint8_t i, uint8_t n) 
 {
-  INT8U son;
+  uint8_t son;
   do{    
     if (RIGHT(i) <= n && timers[RIGHT(i)]->timeout < timers[LEFT(i)]->timeout)
     {
@@ -95,7 +98,7 @@ static void BRTOS_TimerTaskInit(void)
 {
   
   OS_SR_SAVE_VAR 
-  INT8U i; 
+  uint8_t i; 
   
   if (currentTask)
     OSEnterCritical();
@@ -154,9 +157,8 @@ void BRTOSTimerTask(void)
      
      OS_SR_SAVE_VAR
      BRTOS_TIMER p;
-     TIMER_CNT   tickcount;
      TIMER_CNT   repeat;
-     INT32U      timeout;
+     osdtick_t   timeout = 0;
      TIMER_CNT   next_time_to_wake;      /* tick count of next timer */
      BRTOS_TMR_T *list, *list_tmp;          
      
@@ -183,13 +185,60 @@ void BRTOSTimerTask(void)
      
         BRTOS_TimerTaskSleep(next_time_to_wake);
 
-        tickcount = OSGetTickCount();               
-
-timer_loop:         
         list = BRTOS_TIMER_VECTOR.current;
         p=list->timers[1];
 
-        while(p!= NULL && p->timeout <= tickcount)
+        /* Some high priority task ran and took more than one tick to complete.
+        So, if the timer overflows in such time, we must execute all the remaining
+        softtimers and switch the lists. */
+		if(p!= NULL && p->timeout > OSGetTickCount()){
+            while(p!= NULL)
+            {
+                // some timer has expired
+                if((p)->func_cb != NULL)
+                {
+                  repeat = (TIMER_CNT)((p)->func_cb()); /* callback */
+
+                  OSEnterCritical();
+
+                  if (repeat > 0)
+                  { /* needs to repeat after "repeat" time ? */
+                	  timeout = (osdtick_t)((osdtick_t)OSGetTickCount() + (osdtick_t)repeat);
+                	  p->timeout = (TIMER_CNT)timeout;
+					  list_tmp = BRTOS_TIMER_VECTOR.future; // add into future list
+					  list_tmp->timers[++list_tmp->count] = p; // insert in the end
+					  Subir(list_tmp->timers,list_tmp->count);
+					  list->timers[1]=list->timers[list->count]; // remove from current list
+					  list->timers[list->count] = NULL;
+					  list->count--;
+                   }
+                   else
+                   {
+                      p->timeout = 0;
+                      p->state = TIMER_NOT_ALLOCATED;
+                      p->func_cb = NULL;
+                      list->timers[1]=list->timers[list->count]; // remove from current list
+                      list->timers[list->count] = NULL;
+                      list->count--;
+                   }
+                 }
+
+                 Descer (list->timers, 1, list->count); // order it
+                 p=list->timers[1];
+                 OSExitCritical();
+            }
+            if(p==NULL)
+            {
+              /* time to switch lists */
+              void* tmp = BRTOS_TIMER_VECTOR.current;
+              BRTOS_TIMER_VECTOR.current = BRTOS_TIMER_VECTOR.future;
+              BRTOS_TIMER_VECTOR.future = tmp;
+              list = BRTOS_TIMER_VECTOR.current;
+              p=list->timers[1];
+            }
+        }
+
+        while(p!= NULL && p->timeout <= OSGetTickCount())
         {  
             // some timer has expired
             if((p)->func_cb != NULL) 
@@ -200,7 +249,7 @@ timer_loop:
                            
               if (repeat > 0)
               { /* needs to repeat after "repeat" time ? */
-                  timeout = (INT32U)((INT32U)tickcount + (INT32U)repeat);                  
+            	  timeout = (osdtick_t)((osdtick_t)OSGetTickCount() + (osdtick_t)repeat);
                   if (timeout >= TICK_COUNT_OVERFLOW)
                   {
                     p->timeout = (TIMER_CNT)(timeout - TICK_COUNT_OVERFLOW);                                 
@@ -232,7 +281,7 @@ timer_loop:
              OSExitCritical();                           
         }
                 
-        if(tickcount == TIMER_MAX_COUNTER)
+        if(timeout > TIMER_MAX_COUNTER)
         {
           if(p==NULL)
           {            
@@ -242,12 +291,6 @@ timer_loop:
             BRTOS_TIMER_VECTOR.future = tmp; 
             list = BRTOS_TIMER_VECTOR.current;
             p=list->timers[1];
-          }
-          else
-          {
-            /* there is a delayed timer */
-            tickcount++;
-            goto timer_loop;            
           }
         }
         
@@ -267,14 +310,14 @@ timer_loop:
 /* Public functions */
 
 /**
-  \fn void BRTOS_TimerInit(INT16U timertask_stacksize) 
+  \fn void BRTOS_TimerInit(uint16_t timertask_stacksize) 
   \brief public function to start Timer Service 
   must be called before any call to the other public functions.
   It only installs "BRTOS_TimerTask".
   \param timertask_stacksize size of stack allocated to the task
   \return nothing if sucess or never if any error  
 */
-void OSTimerInit(INT16U timertask_stacksize, INT8U prio){
+void OSTimerInit(uint16_t timertask_stacksize, uint8_t prio){
 
   BRTOS_TimerTaskInit();
    
@@ -290,7 +333,7 @@ void OSTimerInit(INT16U timertask_stacksize, INT8U prio){
   
 }
 /**
-  \fn INT8U BRTOS_TimerSet (BRTOS_TIMER *cbp, FCN_CALLBACK cb, TIMER_CNT time_wait) 
+  \fn uint8_t BRTOS_TimerSet (BRTOS_TIMER *cbp, FCN_CALLBACK cb, TIMER_CNT time_wait) 
   \brief public function to create and start a soft timer
    must be called before any call to the other public timer functions.
   \param *cbp  soft timer pointer
@@ -303,14 +346,14 @@ void OSTimerInit(INT16U timertask_stacksize, INT8U prio){
   \return ERR_EVENT_NO_CREATED
 */
 
-INT8U OSTimerSet (BRTOS_TIMER *cbp, FCN_CALLBACK cb, TIMER_CNT time_wait)
+uint8_t OSTimerSet (BRTOS_TIMER *cbp, FCN_CALLBACK cb, TIMER_CNT time_wait)
 {
     
     OS_SR_SAVE_VAR
     
-    INT8U i;     
+    uint8_t i;     
     BRTOS_TIMER p;
-    INT32U timeout;
+    osdtick_t timeout;
     BRTOS_TMR_T* list;
     
     if((cb == NULL) || (cbp == NULL)) return NULL_EVENT_POINTER;    /* return error code */        
@@ -355,18 +398,18 @@ INT8U OSTimerSet (BRTOS_TIMER *cbp, FCN_CALLBACK cb, TIMER_CNT time_wait)
     if(time_wait > 0)
     {      
     
-      timeout = (INT32U)((INT32U)OSGetCount() + (INT32U)time_wait);
+      timeout = (osdtick_t)((osdtick_t)OSGetCount() + (osdtick_t)time_wait);
       
       if (timeout >= TICK_COUNT_OVERFLOW)
       {
-        p->timeout = (INT16U)(timeout - TICK_COUNT_OVERFLOW);
+        p->timeout = (TIMER_CNT)(timeout - TICK_COUNT_OVERFLOW);
         list = BRTOS_TIMER_VECTOR.future;   // add into future list
         list->timers[++list->count] = p; // insert in the end                            
         Subir (list->timers, list->count); // order it 
       }
       else
       {
-        p->timeout = (INT16U)timeout;
+        p->timeout = (TIMER_CNT)timeout;
         list = BRTOS_TIMER_VECTOR.current;  // add into current list
         list->timers[++list->count] = p; // insert in the end                            
         Subir (list->timers, list->count); // order it 
@@ -435,17 +478,17 @@ TIMER_CNT OSTimerGet (BRTOS_TIMER p)
 
 
 /**
-  \fn INT8U BRTOS_TimerStart (BRTOS_TIMER p, TIMER_CNT time_wait)
+  \fn uint8_t BRTOS_TimerStart (BRTOS_TIMER p, TIMER_CNT time_wait)
   \brief public function to start or restart a soft timer
   \param p  soft timer
   \param time_wait soft timer expiration time
   \return OK success
   \return NULL_EVENT_POINTER error code
 */
-INT8U OSTimerStart (BRTOS_TIMER p, TIMER_CNT time_wait){
+uint8_t OSTimerStart (BRTOS_TIMER p, TIMER_CNT time_wait){
  
   OS_SR_SAVE_VAR
-  INT32U timeout;
+  osdtick_t timeout;
   BRTOS_TMR_T* list;
   
   if(p!= NULL && time_wait != 0)
@@ -459,7 +502,7 @@ INT8U OSTimerStart (BRTOS_TIMER p, TIMER_CNT time_wait){
       if(time_wait > 0)
       {      
     
-        timeout = (INT32U)((INT32U)OSGetCount() + (INT32U)time_wait);
+        timeout = (osdtick_t)((osdtick_t)OSGetCount() + (osdtick_t)time_wait);
         
         if (timeout >= TICK_COUNT_OVERFLOW)
         {
@@ -500,7 +543,7 @@ INT8U OSTimerStart (BRTOS_TIMER p, TIMER_CNT time_wait){
 
 
 /**
-  \fn INT8U BRTOS_TimerStop (BRTOS_TIMER p, INT8U del)
+  \fn uint8_t BRTOS_TimerStop (BRTOS_TIMER p, uint8_t del)
   \brief public function to stop or (stop and delete) a soft timer
   \param p  soft timer
   \param del if "> 0", timer is also deleted
@@ -508,11 +551,11 @@ INT8U OSTimerStart (BRTOS_TIMER p, TIMER_CNT time_wait){
   \return NULL_EVENT_POINTER error code
 */
 
-INT8U OSTimerStop (BRTOS_TIMER p, INT8U del){
+uint8_t OSTimerStop (BRTOS_TIMER p, uint8_t del){
   
   OS_SR_SAVE_VAR
   BRTOS_TMR_T* list;
-  INT8U pos_timer = 0;
+  uint8_t pos_timer = 0;
   
   if(p != NULL)
   {

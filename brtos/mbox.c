@@ -70,7 +70,7 @@
 
 #include "BRTOS.h"
 
-#if (PROCESSOR == COLDFIRE_V1)
+#if (PROCESSOR == COLDFIRE_V1 && __CWCC__)
 #pragma warn_implicitconv off
 #endif
 
@@ -82,10 +82,10 @@
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-INT8U OSMboxCreate (BRTOS_Mbox **event, void *message)
+uint8_t OSMboxCreate (BRTOS_Mbox **event, void *message)
 {
   OS_SR_SAVE_VAR
-  INT16S i = 0;  
+  int16_t i = 0;  
   BRTOS_Mbox *pont_event;
 
   if (iNesting > 0) {                                // See if caller is an interrupt
@@ -158,7 +158,7 @@ INT8U OSMboxCreate (BRTOS_Mbox **event, void *message)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-INT8U OSMboxDelete (BRTOS_Mbox **event)
+uint8_t OSMboxDelete (BRTOS_Mbox **event)
 {
   OS_SR_SAVE_VAR
   BRTOS_Mbox *pont_event;
@@ -201,11 +201,11 @@ INT8U OSMboxDelete (BRTOS_Mbox **event)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-INT8U OSMboxPend (BRTOS_Mbox *pont_event, void **Mail, INT16U time_wait)
+uint8_t OSMboxPend (BRTOS_Mbox *pont_event, void **Mail, ostick_t time_wait)
 {
   OS_SR_SAVE_VAR
-  INT8U  iPriority = 0;
-  INT32U  timeout;
+  uint8_t  iPriority = 0;
+  osdtick_t timeout;
   ContextType *Task;  
   
   #if (ERROR_CHECK == 1)
@@ -282,16 +282,20 @@ INT8U OSMboxPend (BRTOS_Mbox *pont_event, void **Mail, INT16U time_wait)
     // Set timeout overflow
     if (time_wait)
     {  
-      timeout = (INT32U)((INT32U)OSGetCount() + (INT32U)time_wait);
+  	  timeout = (osdtick_t)((osdtick_t)OSGetCount() + (osdtick_t)time_wait);
       
-      if (timeout >= TICK_COUNT_OVERFLOW)
-      {
-        Task->TimeToWait = (INT16U)(timeout - TICK_COUNT_OVERFLOW);
-      }
-      else
-      {
-        Task->TimeToWait = (INT16U)timeout;
-      }
+  	  if (sizeof_ostick_t < 8){
+  		  if (timeout >= TICK_COUNT_OVERFLOW)
+  		  {
+  			  Task->TimeToWait = (ostick_t)(timeout - TICK_COUNT_OVERFLOW);
+  		  }
+  		  else
+  		  {
+  			  Task->TimeToWait = (ostick_t)timeout;
+  		  }
+  	  }else{
+  		  Task->TimeToWait = (ostick_t)timeout;
+  	  }
       
       // Put task into delay list
       IncludeTaskIntoDelayList();
@@ -370,12 +374,12 @@ INT8U OSMboxPend (BRTOS_Mbox *pont_event, void **Mail, INT16U time_wait)
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-INT8U OSMboxPost(BRTOS_Mbox *pont_event, void *message)
+uint8_t OSMboxPost(BRTOS_Mbox *pont_event, void *message)
 {
   OS_SR_SAVE_VAR
-  INT8U iPriority = (INT8U)0;
+  uint8_t iPriority = (uint8_t)0;
   #if (VERBOSE == 1)
-  INT8U TaskSelect = 0;  
+  uint8_t TaskSelect = 0;  
   #endif
   
   #if (ERROR_CHECK == 1)    
